@@ -1,0 +1,10 @@
+{
+    "home": {
+        "welcome": "ToDo Suitcase App",
+        "description": "Navigation home page"
+    },
+    "navigation": {
+        "suitcases": "Suitcases",
+        "addCase": "Add suitcase"
+    }
+}
