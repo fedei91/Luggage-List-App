@@ -25,9 +25,7 @@ const Home: React.FC = () => {
   }, [suitcases]) 
 
   const addSuitcase = () => {
-    console.log('Input value:', newSuitcaseName);
-    console.log('Condition result:', newSuitcaseName.trim() !== '');
-
+    
     if (newSuitcaseName.trim() !== '') {
     
       const newSuitcase: Suitcase = {
@@ -38,7 +36,6 @@ const Home: React.FC = () => {
       };
     
       setSuitcases([...suitcases, newSuitcase]);
-      console.log('Updated suitcases:', suitcases);
       setNewSuitcaseName('');
 
     }
@@ -85,7 +82,7 @@ const Home: React.FC = () => {
           toggleItem={toggleItem}
           toggleSuitcase={toggleSuitcase}
           deleteSuitcase={deleteSuitcase}
-
+          addSuitcaseItem={addSuitcase}
         />
         <AddSuitcaseForm onSubmit={addSuitcase} onInputChange={handleInputChange}/>
     </nav>

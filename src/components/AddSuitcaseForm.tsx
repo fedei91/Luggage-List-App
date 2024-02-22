@@ -24,20 +24,22 @@ const AddSuitcaseForm: React.FC<NewSuitcaseFormProps> = ({ onSubmit, onInputChan
     };
 
     return (
-        <form onSubmit={handleSubmit} className="new-item-form">
-            <div className="form-row">
-                <label htmlFor="item">New Suitcase</label>
-                <input
-                    value={newSuitcase}
-                    onChange={handleChange}
-                    type="text"
-                    id="item"
-                />
-            </div>
-            <button type="submit" className="btn">
-                Add
-            </button>
-        </form>
+        <><div>
+            AddSuitcaseForm component
+        </div>
+            <form onSubmit={handleSubmit} className="new-item-form">
+                <div className="form-row">
+                    <label htmlFor="item">New Suitcase</label>
+                    <input
+                        value={newSuitcase}
+                        onChange={handleChange}
+                        type="text"
+                        id="item" />
+                </div>
+                <button type="submit" className="btn">
+                    Add
+                </button>
+            </form></>
     )
 }
 
