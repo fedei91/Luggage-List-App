@@ -4,37 +4,37 @@ import SuitcaseList from './SuitcaseList';
 import AddSuitcaseForm from './AddSuitcaseForm';
 
 interface Suitcase {
-    id: string;
-    name: string;
-    closed: boolean;
-    items: { id: string; name: string; checked: boolean }[];
+  id: string;
+  name: string;
+  closed: boolean;
+  items: { id: string; name: string; checked: boolean }[];
 }
 
 const Home: React.FC = () => {
   const { t } = useLanguageContext();
 
-  const [suitcases, setSuitcases] = useState<Suitcase[]>( () => {
+  const [suitcases, setSuitcases] = useState<Suitcase[]>(() => {
     const localData = localStorage.getItem('suitcases');
-    return localData ? JSON.parse(localData) :[];
+    return localData ? JSON.parse(localData) : [];
   });
 
   const [newSuitcaseName, setNewSuitcaseName] = useState<string>('');
 
-  useEffect( () => {
+  useEffect(() => {
     localStorage.setItem('suitcases', JSON.stringify(suitcases));
-  }, [suitcases]) 
+  }, [suitcases])
 
   const addSuitcase = () => {
-    
+
     if (newSuitcaseName.trim() !== '') {
-    
+
       const newSuitcase: Suitcase = {
         id: crypto.randomUUID(),
         name: newSuitcaseName.trim(),
         closed: false,
         items: []
       };
-    
+
       setSuitcases([...suitcases, newSuitcase]);
       setNewSuitcaseName('');
 
@@ -55,7 +55,7 @@ const Home: React.FC = () => {
         const updatedItems = suitcase.items.map(item =>
           item.id === itemId ? { ...item, checked } : item
         );
-        
+
         return { ...suitcase, items: updatedItems };
       }
       return suitcase;
@@ -74,20 +74,20 @@ const Home: React.FC = () => {
   }
 
   return (
-  <div>
-    <h2>{t('home.welcome')}</h2>
-    <nav>
-        <SuitcaseList 
-          suitcases={suitcases} 
+    <div>
+      <h2>{t('home.welcome')}</h2>
+      <nav>
+        <SuitcaseList
+          suitcases={suitcases}
           toggleItem={toggleItem}
           toggleSuitcase={toggleSuitcase}
           deleteSuitcase={deleteSuitcase}
           addSuitcaseItem={addSuitcase}
         />
-        <AddSuitcaseForm onSubmit={addSuitcase} onInputChange={handleInputChange}/>
-    </nav>
-  </div>
-  
+        <AddSuitcaseForm onSubmit={addSuitcase} onInputChange={handleInputChange} />
+      </nav>
+    </div>
+
   );
 };
 

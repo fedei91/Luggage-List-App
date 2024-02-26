@@ -1,12 +1,10 @@
 import React, { useState, FormEvent, ChangeEvent } from "react";
 
 interface AddItemFormProps {
-    onSubmit: (suitcaseId: string, newItemName: string) => void;
-    suitcaseId: string;
-
+    onSubmit: (newItemName: string) => void;
 }
 
-const AddItemForm: React.FC<AddItemFormProps> = ({ onSubmit, suitcaseId }) => {
+const AddItemForm: React.FC<AddItemFormProps> = ({ onSubmit }) => {
     const [newItemName, setNewItemName] = useState("");
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
@@ -14,9 +12,9 @@ const AddItemForm: React.FC<AddItemFormProps> = ({ onSubmit, suitcaseId }) => {
 
         if (newItemName.trim() !== "") {
 
-            onSubmit(suitcaseId, newItemName.trim());
+            onSubmit(newItemName.trim());
             setNewItemName("");
-            
+
         }
     };
 
@@ -39,10 +37,6 @@ const AddItemForm: React.FC<AddItemFormProps> = ({ onSubmit, suitcaseId }) => {
                 id="item"
             />
         </div>
-
-        <pre>
-            { JSON.stringify(newItemName)}
-        </pre>
 
         <button type="submit" className="btn">
             Add

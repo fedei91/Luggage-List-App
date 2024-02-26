@@ -1,17 +1,17 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
 
-interface NewSuitcaseFormProps {
+interface AddSuitcaseFormProps {
     onSubmit: (newSuitcase: string) => void;
     onInputChange: (value: string) => void;
 }
 
-const AddSuitcaseForm: React.FC<NewSuitcaseFormProps> = ({ onSubmit, onInputChange }) => {
+const AddSuitcaseForm: React.FC<AddSuitcaseFormProps> = ({ onSubmit, onInputChange }) => {
     const [newSuitcase, setNewSuitCase] = useState("");
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
         console.log('Form submitted!');
-        if (newSuitcase === "") return;
+        if (newSuitcase.trim() === "") return;
 
         onSubmit(newSuitcase.trim());
         setNewSuitCase("");
@@ -24,9 +24,10 @@ const AddSuitcaseForm: React.FC<NewSuitcaseFormProps> = ({ onSubmit, onInputChan
     };
 
     return (
-        <><div>
-            AddSuitcaseForm component
-        </div>
+        <>
+            <div>
+                AddSuitcaseForm component
+            </div>
             <form onSubmit={handleSubmit} className="new-item-form">
                 <div className="form-row">
                     <label htmlFor="item">New Suitcase</label>
@@ -39,7 +40,8 @@ const AddSuitcaseForm: React.FC<NewSuitcaseFormProps> = ({ onSubmit, onInputChan
                 <button type="submit" className="btn">
                     Add
                 </button>
-            </form></>
+            </form>
+        </>
     )
 }
 
