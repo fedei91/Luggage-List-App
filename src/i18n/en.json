@@ -1,10 +1,25 @@
 {
     "home": {
-        "welcome": "ToDo Suitcase App",
-        "description": "Navigation home page"
+        "welcome": "ToDo Suitcase App"
+    },
+    "suitcaseList": {
+        "add": "Add",
+        "delete": "Delete"
+    },
+    "suitcaseItem": {
+        "delete": "Delete"
+    },
+    "suitcaseItemList": {
+        "add": "Add",
+        "delete": "Delete",
+        "newItem": "New item"
     },
     "navigation": {
         "suitcases": "Suitcases",
         "addCase": "Add suitcase"
+    },
+    "addSuitcaseForm": {
+        "new": "New suitcase",
+        "add": "Add"
     }
 }

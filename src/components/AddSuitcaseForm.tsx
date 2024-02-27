@@ -1,4 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
+import { useLanguageContext } from '../languageContext';
 
 interface AddSuitcaseFormProps {
     onSubmit: (newSuitcase: string) => void;
@@ -6,6 +7,8 @@ interface AddSuitcaseFormProps {
 }
 
 const AddSuitcaseForm: React.FC<AddSuitcaseFormProps> = ({ onSubmit, onInputChange }) => {
+    const { t } = useLanguageContext();
+
     const [newSuitcase, setNewSuitCase] = useState("");
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
@@ -30,7 +33,7 @@ const AddSuitcaseForm: React.FC<AddSuitcaseFormProps> = ({ onSubmit, onInputChan
             </div>
             <form onSubmit={handleSubmit} className="new-item-form">
                 <div className="form-row">
-                    <label htmlFor="item">New Suitcase</label>
+                    <label htmlFor="item">{t('addSuitcaseForm.new')}</label>
                     <input
                         value={newSuitcase}
                         onChange={handleChange}
@@ -38,7 +41,7 @@ const AddSuitcaseForm: React.FC<AddSuitcaseFormProps> = ({ onSubmit, onInputChan
                         id="item" />
                 </div>
                 <button type="submit" className="btn">
-                    Add
+                    {t('addSuitcaseForm.add')}
                 </button>
             </form>
         </>

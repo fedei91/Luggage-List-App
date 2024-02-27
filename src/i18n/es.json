@@ -1,10 +1,25 @@
 {
     "home": {
-        "welcome": "ToDo Suitcase aplicativo",
-        "description": "Navegacion"
+        "welcome": "ToDo Suitcase aplicativo"
+    },
+    "suitcaseList": {
+        "add": "Agregar",
+        "delete": "Eliminar"
+    },
+    "suitcaseItem": {
+        "delete": "Eliminar"
+    },
+    "suitcaseItemList": {
+        "add": "Agregar",
+        "delete": "Eliminar",
+        "newItem": "Nuevo item"
     },
     "navigation": {
         "suitcases": "Valijas",
         "addCase": "Añadir valija"
+    },
+    "addSuitcaseForm": {
+        "new": "Nueva valija",
+        "add": "Agregar"
     }
 }

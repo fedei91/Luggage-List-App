@@ -1,10 +1,13 @@
 import React, { useState, FormEvent, ChangeEvent } from "react";
+import { useLanguageContext } from "../languageContext";
 
 interface AddItemFormProps {
     onSubmit: (newItemName: string) => void;
 }
 
 const AddItemForm: React.FC<AddItemFormProps> = ({ onSubmit }) => {
+    const { t } = useLanguageContext();
+
     const [newItemName, setNewItemName] = useState("");
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
@@ -29,7 +32,7 @@ const AddItemForm: React.FC<AddItemFormProps> = ({ onSubmit }) => {
         AddItemForm component
         <form onSubmit={handleSubmit} className="new-item-form">
         <div className="form-row">
-            <label htmlFor="item">New Item</label>
+            <label htmlFor="item">{t('suitcaseItemList.newItem')}</label>
             <input
                 value={newItemName}
                 onChange={handleChange}
@@ -39,7 +42,7 @@ const AddItemForm: React.FC<AddItemFormProps> = ({ onSubmit }) => {
         </div>
 
         <button type="submit" className="btn">
-            Add
+            {t('suitcaseItemList.add')}
         </button>
     </form>
     </>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguageContext } from '../languageContext';
 
 interface SuitcaseItemProps {
     id: string;
@@ -9,6 +10,8 @@ interface SuitcaseItemProps {
 }
 
 const SuitcaseItem: React.FC<SuitcaseItemProps> = ({ id, name, checked, toggleItem, deleteItem }) => {
+    const { t } = useLanguageContext();
+
     return (
         <li>
             <label>
@@ -19,7 +22,7 @@ const SuitcaseItem: React.FC<SuitcaseItemProps> = ({ id, name, checked, toggleIt
                 />
                 {name}
             </label>
-            <button onClick={deleteItem}>Delete</button>
+            <button onClick={deleteItem}>{t('suitcaseItem.delete')}</button>
         </li>
     );
 }

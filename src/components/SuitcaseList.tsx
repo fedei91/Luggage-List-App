@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SuitcaseItem from "./SuitcaseItem";
 import AddItemForm from "./AddItemForm";
+import { useLanguageContext } from "../languageContext";
 
 interface SuitcaseItem {
     id: string;
@@ -24,6 +25,8 @@ interface SuitcaseListProps {
 }
 
 const SuitcaseList: React.FC<SuitcaseListProps> = ({ suitcases, toggleSuitcase, deleteSuitcase, addSuitcaseItem, setSuitcases }) => {
+    const { t } = useLanguageContext();
+    
     const [allItemsChecked, setAllItemsChecked] = useState<boolean[]>([]);
 
     useEffect(() => {
@@ -114,7 +117,7 @@ const SuitcaseList: React.FC<SuitcaseListProps> = ({ suitcases, toggleSuitcase, 
                         {/* <button onClick={() => handleToggleSuitcase(suitcase.id, suitcase.closed)}>
                             {allItemsChecked[index] ? 'Close' : 'Open'}
                         </button> */}
-                        <button onClick={() => handleDeleteSuitcase(suitcase.id)}>Delete</button>
+                        <button onClick={() => handleDeleteSuitcase(suitcase.id)}>{t('suitcaseList.delete')}</button>
                         <ul>
                             {suitcase.items.map(item => (
                                 <div key={item.id}>
