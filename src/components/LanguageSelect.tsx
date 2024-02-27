@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLanguageContext } from "../languageContext";
+import i18next from "i18next";
 
 const LanguageSelect: React.FC = () => {
   const { languages, onClickLanguageChange } = useLanguageContext();
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("");
+
+  useEffect(() => {
+    setSelectedLanguage(i18next.language);
+  })
 
   return (
     <select
@@ -14,6 +20,7 @@ const LanguageSelect: React.FC = () => {
         height: "40px",
       }}
       onChange={onClickLanguageChange}
+      value={selectedLanguage}
     >
       {Object.keys(languages).map((lng) => (
         <option key={languages[lng].nativeName} value={lng}>
