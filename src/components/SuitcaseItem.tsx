@@ -5,9 +5,10 @@ interface SuitcaseItemProps {
     name: string;
     checked: boolean;
     toggleItem: (checked: boolean) => void;
+    deleteItem: () => void;
 }
 
-const SuitcaseItem: React.FC<SuitcaseItemProps> = ({ id, name, checked, toggleItem }) => {
+const SuitcaseItem: React.FC<SuitcaseItemProps> = ({ id, name, checked, toggleItem, deleteItem }) => {
     return (
         <li>
             <label>
@@ -18,6 +19,7 @@ const SuitcaseItem: React.FC<SuitcaseItemProps> = ({ id, name, checked, toggleIt
                 />
                 {name}
             </label>
+            <button onClick={deleteItem}>Delete</button>
         </li>
     );
 }

@@ -25,49 +25,39 @@ const Home: React.FC = () => {
   }, [suitcases])
 
   const addSuitcase = () => {
-
     if (newSuitcaseName.trim() !== '') {
+        const newSuitcase: Suitcase = {
+            id: crypto.randomUUID(),
+            name: newSuitcaseName.trim(),
+            closed: false,
+            items: []
+        };
 
-      const newSuitcase: Suitcase = {
-        id: crypto.randomUUID(),
-        name: newSuitcaseName.trim(),
-        closed: false,
-        items: []
-      };
+        setSuitcases(prevSuitcases => [...prevSuitcases, newSuitcase]);
+        setNewSuitcaseName('');
 
-      setSuitcases([...suitcases, newSuitcase]);
-      setNewSuitcaseName('');
-
+        localStorage.setItem('suitcases', JSON.stringify([...suitcases, newSuitcase]));
     }
-  };
+};
 
   const toggleSuitcase = (id: string, closed: boolean) => {
-    const updatedSuitcases = suitcases.map(suitcase =>
-      suitcase.id === id ? { ...suitcase, closed } : suitcase
-    );
-    setSuitcases(updatedSuitcases);
-
-  }
-
-  const toggleItem = (suitcaseId: string, itemId: string, checked: boolean) => {
     const updatedSuitcases = suitcases.map(suitcase => {
-      if (suitcase.id === suitcaseId) {
-        const updatedItems = suitcase.items.map(item =>
-          item.id === itemId ? { ...item, checked } : item
-        );
-
-        return { ...suitcase, items: updatedItems };
+      if (suitcase.id === id) {
+        const updatedItems = suitcase.items.map(item => ({ ...item, checked: !closed }));
+        return { ...suitcase, closed: !closed, items: updatedItems };
       }
       return suitcase;
     });
-
     setSuitcases(updatedSuitcases);
+
   }
 
   const deleteSuitcase = (id: string) => {
-    const updatedSuitcases = suitcases.filter(suitcases => suitcases.id !== id);
+    const updatedSuitcases = suitcases.filter(suitcase => suitcase.id !== id);
     setSuitcases(updatedSuitcases);
-  };
+    localStorage.setItem('suitcases', JSON.stringify(updatedSuitcases));
+};
+
 
   const handleInputChange = (value: string) => {
     setNewSuitcaseName(value);
@@ -79,10 +69,10 @@ const Home: React.FC = () => {
       <nav>
         <SuitcaseList
           suitcases={suitcases}
-          toggleItem={toggleItem}
           toggleSuitcase={toggleSuitcase}
           deleteSuitcase={deleteSuitcase}
           addSuitcaseItem={addSuitcase}
+          setSuitcases={setSuitcases}
         />
         <AddSuitcaseForm onSubmit={addSuitcase} onInputChange={handleInputChange} />
       </nav>
